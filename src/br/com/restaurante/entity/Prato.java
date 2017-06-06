@@ -22,16 +22,16 @@ public class Prato implements Serializable {
 	@Column(name = "codPrato", unique = true, nullable = false)
 	private int codPrato;
 	
-	@Column(name = "nome", unique = false, nullable = false, length = 100)
+	@Column(name = "nome", unique = false, nullable = true, length = 100)
 	private String nome;
 	
-	@Column(name = "valor", unique = false, nullable = false, length = 10)
+	@Column(name = "valor", unique = false, nullable = true, length = 10)
 	private double valor;
 	
-	@Column(name = "categoria", unique = false, nullable = false, length = 100)
+	@Column(name = "categoria", unique = false, nullable = true, length = 100)
 	private String categoria;
 	
-	@Column(name = "chefe", unique = false, nullable = false, length = 100)
+	@Column(name = "chefe", unique = false, nullable = true, length = 100)
 	private String chefe;
 
 	
