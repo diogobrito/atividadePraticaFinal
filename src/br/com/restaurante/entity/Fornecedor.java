@@ -1,15 +1,16 @@
 package br.com.restaurante.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -34,14 +35,13 @@ public class Fornecedor implements Serializable {
 	private String porte;
 
 	@Column(name = "CNPJ", unique = true, nullable = false)
-	private int CNPJ;
+	private long CNPJ;
 
 	@Column(name = "flAtivo", unique = true, nullable = false)
 	private boolean flAtivo;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "codIngrediente")
-	private Ingrediente ingrediente;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Ingrediente> ingredientes;
 
 	public int getCodFornecedor() {
 		return codFornecedor;
@@ -67,11 +67,11 @@ public class Fornecedor implements Serializable {
 		this.porte = porte;
 	}
 
-	public int getCNPJ() {
+	public long getCNPJ() {
 		return CNPJ;
 	}
 
-	public void setCNPJ(int cNPJ) {
+	public void setCNPJ(long cNPJ) {
 		CNPJ = cNPJ;
 	}
 
@@ -83,12 +83,12 @@ public class Fornecedor implements Serializable {
 		this.flAtivo = flAtivo;
 	}
 
-	public Ingrediente getIngrediente() {
-		return ingrediente;
+	public List<Ingrediente> getIngredientes() {
+		return ingredientes;
 	}
 
-	public void setIngrediente(Ingrediente ingrediente) {
-		this.ingrediente = ingrediente;
+	public void setIngredientes(List<Ingrediente> ingredientes) {
+		this.ingredientes = ingredientes;
 	}
 
 }
