@@ -37,9 +37,6 @@ public class Fornecedor implements Serializable {
 	@Column(name = "CNPJ", unique = true, nullable = false)
 	private long CNPJ;
 
-	@Column(name = "flAtivo", unique = true, nullable = false)
-	private boolean flAtivo;
-
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Ingrediente> ingredientes;
 
@@ -73,14 +70,6 @@ public class Fornecedor implements Serializable {
 
 	public void setCNPJ(long cNPJ) {
 		CNPJ = cNPJ;
-	}
-
-	public boolean isFlAtivo() {
-		return flAtivo;
-	}
-
-	public void setFlAtivo(boolean flAtivo) {
-		this.flAtivo = flAtivo;
 	}
 
 	public List<Ingrediente> getIngredientes() {
