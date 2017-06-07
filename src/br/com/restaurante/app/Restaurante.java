@@ -27,6 +27,10 @@ public class Restaurante {
 
 			cadastrarPrato();
 			cadastrarFonecedor();
+			cadastrarIngrediente();
+			listarIngredientes();
+			listarPratos();
+			listarFonecedores();
 
 		} else {
 			JOptionPane.showMessageDialog(null, "Obrigado!");

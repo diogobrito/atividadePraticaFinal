@@ -14,7 +14,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "PRATO", catalog = "dbrestaurante", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "codPrato") })
 public class Prato implements Serializable {
-
+ 
 	private static final long serialVersionUID = 978887095374937064L;
 
 	@Id
