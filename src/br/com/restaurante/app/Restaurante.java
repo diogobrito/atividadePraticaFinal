@@ -13,10 +13,6 @@ import br.com.restaurante.entity.Prato;
 import br.com.restaurante.helper.RestauranteHelper;
 
 public class Restaurante {
-	
-	static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Restaurante");
-	static EntityManager em = emf.createEntityManager();
-	static RestauranteHelper helper = new RestauranteHelper(em);
 
 	public static void main(String[] args) {
 
@@ -38,6 +34,9 @@ public class Restaurante {
 	}
 
 	public static void cadastrarPrato() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Restaurante");     
+		EntityManager em = emf.createEntityManager();                                         
+		RestauranteHelper helper = new RestauranteHelper(em);                                 
 		Prato prato = new Prato();
 		prato.setNome(JOptionPane.showInputDialog("Nome do prato: "));
 		prato.setChefe(JOptionPane.showInputDialog("Nome do chefe: "));
@@ -46,26 +45,34 @@ public class Restaurante {
 
 		try {
 			helper.salvarPratos(prato);
+			em.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static void cadastrarFonecedor() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Restaurante");     
+		EntityManager em = emf.createEntityManager();                                         
+		RestauranteHelper helper = new RestauranteHelper(em);         
 		Fornecedor forn = new Fornecedor();
 		forn.setNome(JOptionPane.showInputDialog("Nome do fornecedor: "));
 		forn.setCNPJ(new Long(JOptionPane.showInputDialog("CNPJ: ")));
 		forn.setPorte(JOptionPane.showInputDialog("Porte: "));
 
-
 		try {
 			helper.salvarFornecedores(forn);
+			em.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static void cadastrarIngrediente() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Restaurante");     
+		EntityManager em = emf.createEntityManager();                                         
+		RestauranteHelper helper = new RestauranteHelper(em); 
+		
 		Ingrediente ingrediente = new Ingrediente();
 		ingrediente.setNome(JOptionPane.showInputDialog("Nome: "));
 		ingrediente.setPeso(new Float(JOptionPane.showInputDialog("Peso: ")));
@@ -73,30 +80,44 @@ public class Restaurante {
 
 		try {
 			helper.salvarIngredientes(ingrediente);
+			em.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static void listarIngredientes() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Restaurante");     
+		EntityManager em = emf.createEntityManager();                                         
+		RestauranteHelper helper = new RestauranteHelper(em); 
 		List<Ingrediente> ingredientes = helper.listarIngrediente();
 		for (Ingrediente ingrediente : ingredientes) {
-			System.out.println(ingrediente.getNome() + ": " + ingrediente.getPeso()+": " + ingrediente.getPreco());
+			System.out.println(ingrediente.getNome() + ": " + ingrediente.getPeso() + ": " + ingrediente.getPreco());
 		}
+		em.close();
 	}
 
 	public static void listarPratos() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Restaurante");     
+		EntityManager em = emf.createEntityManager();                                         
+		RestauranteHelper helper = new RestauranteHelper(em); 
 		List<Prato> pratos = helper.listarPratos();
 		for (Prato prato : pratos) {
-			System.out.println(prato.getNome() + ": " + prato.getChefe() + ": " +prato.getCategoria() + ": " +prato.getValor());
+			System.out.println(
+					prato.getNome() + ": " + prato.getChefe() + ": " + prato.getCategoria() + ": " + prato.getValor());
 		}
+		em.close();
 	}
 
 	public static void listarFonecedores() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Restaurante");     
+		EntityManager em = emf.createEntityManager();                                         
+		RestauranteHelper helper = new RestauranteHelper(em); 
 		List<Fornecedor> fornecedores = helper.listarFornecedores();
 		for (Fornecedor fornecedore : fornecedores) {
-			System.out.println(fornecedore.getCNPJ() + ": " + fornecedore.getNome()+": " + fornecedore.getPorte());
+			System.out.println(fornecedore.getCNPJ() + ": " + fornecedore.getNome() + ": " + fornecedore.getPorte());
 		}
+		em.close();
 	}
 
 }
